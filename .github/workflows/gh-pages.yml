@@ -1,0 +1,40 @@
+name: github pages
+
+on:
+  push:
+    branches:
+      - master # Set a branch to deploy
+  pull_request:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true  # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+
+      - name: Build
+        run: hugo --minify --verbose
+
+      # - name: Deploy 1
+      #   uses: JamesIves/github-pages-deploy-action@releases/v3
+      #   with:
+      #     branch: gh-pages
+      #     folder: public
+
+      - name: Deploy 2
+        uses: peaceiris/actions-gh-pages@v3
+        # if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          publish_dir: ./public
