@@ -1,6 +1,15 @@
-[submodule "themes/base16"]
-	path = themes/base16
-	url = https://github.com/htdvisser/hugo-base16-theme.git
 [submodule "content/posts"]
 	path = content/posts
 	url = https://github.com/ravuthz/blog
+[submodule "themes/base16"]
+	path = themes/base16
+	url = https://github.com/htdvisser/hugo-base16-theme.git
+[submodule "themes/m10c"]
+	path = themes/m10c
+	url = https://github.com/vaga/hugo-theme-m10c.git
+[submodule "themes/Blonde"]
+	path = themes/Blonde
+	url = https://github.com/opera7133/Blonde
+[submodule "themes/compose"]
+	path = themes/compose
+	url = https://github.com/onweru/compose/
